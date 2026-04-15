@@ -1,0 +1,24 @@
+{
+  "overview": "A bike mechanic shop website where customers can browse services with pricing, book appointments online, and shop admins can manage the booking queue through a protected dashboard.",
+  "features": [
+    "Service catalog with pricing and descriptions",
+    "Online appointment booking with date and time slots",
+    "Bike details and customer info collection",
+    "Admin dashboard for managing bookings",
+    "Protected admin login via Internet Identity",
+    "Mark appointments as completed or cancelled",
+    "Add and edit service offerings",
+    "Business hours and availability settings",
+    "Responsive mobile-friendly design"
+  ],
+  "category": "productivity",
+  "tags": [
+    "bike",
+    "mechanic",
+    "booking",
+    "appointments",
+    "services",
+    "shop"
+  ],
+  "last_updated": "2026-04-15T05:59:47.898Z"
+}

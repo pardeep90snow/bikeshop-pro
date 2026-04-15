@@ -1,0 +1,83 @@
+type WeeklyStats = 
+ record {
+   bookingCount: nat;
+   weekStart: text;
+ };
+type Timestamp = int;
+type ServiceInput = 
+ record {
+   basePrice: float64;
+   description: text;
+   estimatedDurationMinutes: nat;
+   name: text;
+ };
+type ServiceId = nat;
+type Service = 
+ record {
+   basePrice: float64;
+   description: text;
+   estimatedDurationMinutes: nat;
+   id: ServiceId;
+   name: text;
+ };
+type CustomerInfo = 
+ record {
+   email: text;
+   name: text;
+   phone: text;
+ };
+type BusinessHours = 
+ record {
+   closeTime: text;
+   openTime: text;
+   slotDurationMinutes: nat;
+ };
+type BookingStatus = 
+ variant {
+   cancelled;
+   completed;
+   pending;
+ };
+type BookingInput = 
+ record {
+   bikeDetails: BikeDetails;
+   customerInfo: CustomerInfo;
+   date: text;
+   serviceId: ServiceId;
+   timeSlot: text;
+ };
+type BookingId = nat;
+type Booking = 
+ record {
+   bikeDetails: BikeDetails;
+   createdAt: Timestamp;
+   customerInfo: CustomerInfo;
+   date: text;
+   id: BookingId;
+   serviceId: ServiceId;
+   status: BookingStatus;
+   timeSlot: text;
+ };
+type BikeDetails = 
+ record {
+   bikeType: text;
+   brand: text;
+   issue: text;
+ };
+service : {
+  addService: (input: ServiceInput) -> (Service);
+  blockDate: (date: text) -> ();
+  createBooking: (input: BookingInput) -> (Booking);
+  deleteService: (id: nat) -> (bool);
+  getAvailableSlots: (date: text) -> (vec text) query;
+  getBlockedDates: () -> (vec text) query;
+  getBusinessHours: () -> (BusinessHours) query;
+  getService: (id: nat) -> (opt Service) query;
+  getWeeklyStats: (weekStart: text) -> (WeeklyStats) query;
+  listBookings: (statusFilter: opt BookingStatus) -> (vec Booking) query;
+  listServices: () -> (vec Service) query;
+  setBusinessHours: (hours: BusinessHours) -> ();
+  unblockDate: (date: text) -> ();
+  updateBookingStatus: (id: nat, newStatus: BookingStatus) -> (opt Booking);
+  updateService: (id: nat, input: ServiceInput) -> (opt Service);
+}
